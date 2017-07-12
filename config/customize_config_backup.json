@@ -1,0 +1,36 @@
+{
+  "zabbix":{
+    "url":"http://172.19.132.116/zabbix",
+    "username":"Admin","password":"zabbix"
+  },
+  "router_groups":{
+    "summary_name":"Router",
+    "name_starts_with":"Router_",
+    "subgroup_name_starts_with":"TRUE - ",
+    "subgroup_name_ends_with":">"
+  },
+  "maps":{
+    "summary_name":"Network Summary",
+    "name_starts_with":"True Shop ",
+    "submap_name_starts_with":"True Shop ",
+    "submap_name_ends_with":">",
+    "detail_map_name_starts_with":"Network For Shop ",
+    "detail_map_name_ends_with":" Detail"
+  },
+  "alerts":{
+    "triggers":[{"name":"{HOST.NAME} is unavailable by ICMP","display":"Unavailable by ICMP"},{"name":"Response time is too high on {HOST.NAME}","display":"Response time is too high"}],
+    "danger_when_priority_more_than":3,
+    "warning_when_priority_more_than":2,
+    "total_shows":"all","refresh_rate":29
+  },
+  "traffics":{
+    "incoming_key_":["ifInOctets[FastEthernet0]","ifInOctets[GigabitEthernet0/0]"],
+    "outgoing_key_":["ifIOutOctets[FastEthernet0]","ifIOutOctets[GigabitEthernet0/0]"],
+    "interfaces":["FastEthernet0","GigabitEthernet0/0"],
+    "icmp_ping_key_":"icmpping",
+    "danger_when_traffic_percent_more_than":75,
+    "warning_when_traffic_percent_more_than":50,
+    "total_shows":"all",
+    "refresh_rate":7
+  }
+}

@@ -1,0 +1,119 @@
+.thead-white th {
+  color: #000;
+  background-color: #fff;
+}
+
+.table-white {
+  color: #000;
+  background-color: #fff;
+}
+
+.table-white th,
+.table-white td,
+.table-white thead th {
+  border-color: #aaa;
+  width: 500px;
+}
+
+.table-hover .table-white:hover {
+  background-color: #d8d8d8;
+}
+
+.table-hover .table-white:hover > td,
+.table-hover .table-white:hover > th {
+  background-color: #d8d8d8;
+}
+
+.table-white.table-bordered {
+  border: 0;
+}
+
+
+.table-white table {
+  background-color: #000;
+  width: 100%;
+}
+
+.table-white-success,
+.table-white-success > th,
+.table-white-success > td {
+  color: #fff;
+  background-color: #1dd645;
+}
+
+.table-hover .table-white-success:hover {
+  background-color: #1faf3e;
+}
+
+.table-hover .table-white-success:hover > td,
+.table-hover .table-white-success:hover > th {
+  background-color: #1faf3e;
+}
+
+.table-white-info,
+.table-white-info > th,
+.table-white-info > td {
+  color: #fff;
+  background-color: #117edd;
+}
+
+.table-hover .table-white-info:hover {
+  background-color: #1f70b7;
+}
+
+.table-hover .table-white-info:hover > td,
+.table-hover .table-white-info:hover > th {
+  background-color: #1f70b7;
+}
+
+.table-white-warning,
+.table-white-warning > th,
+.table-white-warning > td {
+  color: #fff;
+  background-color: #e26918;
+}
+
+.table-hover .table-white-warning:hover {
+  background-color: #cc611a;
+}
+
+.table-hover .table-white-warning:hover > td,
+.table-hover .table-white-warning:hover > th {
+  background-color: #cc611a;
+}
+
+.table-white-danger,
+.table-white-danger > th,
+.table-white-danger > td {
+  color: #fff;
+  background-color: #ff1111;
+}
+
+.table-hover .table-white-danger:hover {
+  background-color: #e01616;
+}
+
+.table-hover .table-white-danger:hover > td,
+.table-hover .table-white-danger:hover > th {
+  background-color: #e01616;
+}
+div .div-alerts {
+  height: 350px;
+  width: 100%;
+  overflow: auto;
+}
+div .div-alerts-part {
+  height: 300px;
+  width: 100%;
+  overflow: auto;
+}
+div .div-traffic {
+  height: 230px;
+  width: 100%;
+  overflow: auto;
+}
+div .div-traffic-part {
+  height: 300px;
+  width: 100%;
+  overflow: auto;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% path = "../"; %>
+  <% include ../partials/head %>
+  <% path = "../"; %>
+  <% include ../partials/head-fancytree %>
+  <script type="text/javascript">
+    $(function(){
+      // Create the tree inside the <div id="tree"> element.
+      $("#map_tree").fancytree({
+        source: [
+          <% for(i=0;i<map_tree_source.length;i++) {%>
+            {title: "<%= map_tree_source[i].title %>", key: "<%= map_tree_source[i].key %>", folder: true, children: [
+              <% for(j=0;j<map_tree_source[i].children.length;j++) {%>
+                {title: "<%= map_tree_source[i].children[j].title %>", key: "<%= map_tree_source[i].children[j].key %>", href:"<%= map_tree_source[i].children[j].href %>"},
+              <% } %>
+            ]},
+          <% } %>
+        ],
+        icon: false,
+        autoCollapse: true,
+        tooltip: true,
+        click: function(event, data){
+          var node = data.node;
+          if(!node.folder){
+            window.location.href = "<%=baseUrl%>"+node.data.href;
+          }
+        }
+      });
+    });
+  </script>
+</head>
+<body class="bg-gray">
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <main>
+    <div class="bg-gray">
+      <div>
+        <div class="col">
+          <div class="col"><br><br>
+            <div class="row align-items-center">
+              <button type="button" class="btn btn-danger" onclick="collapse_map_tree()">V</button>&nbsp;&nbsp;&nbsp;
+              <h1><b><%= map_title %></b></h1>
+            </div>
+          </div>
+          <div id="map_tree" class="collapse"></div><br>
+          <div class="row justify-content-around">
+            <div class="col">
+              <div class="iframe-responsive">
+                <iframe src="http://172.19.132.116/zabbix/zabbix.php?action=map.view&fullscreen=1&sysmapid=<%= map_id %>" height=1300px width=1300px></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+  <script>
+    function collapse_map_tree(){
+      $('#map_tree').collapse('toggle');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/head %>
+</head>
+<body class="bg-gray">
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <main>
+    <div >
+      <div class="bg-gray">
+        <div class="row">
+          <div class="col">
+            <% var data= {'btn_group_label':btn_group_label,'btn_group_list':btn_group_list};%>
+            <% include ../partials/btn-group %>
+          </div>
+        </div><br>
+        <div class="row justify-content-around">
+          <div class="col col-md-4">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <div class="row"><h1><b><%= part_title %></b></h1></div>
+                  <div class="row"><h2><b>Alerts</b></h2></div>
+                  <div class="row"><div id="alerts" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                      <div class="carousel-item active">
+                        <div class="container-fluid">
+                          <div class="row"><h4>Summary</h4></div>
+                          <div class="row">
+                            <div class="div-alerts">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th>Timestamp</th>
+                                    <th>Host</th>
+                                    <th>Issue</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 17:54:02</th>
+                                    <th>271 Big C Donmuang_V80276B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-warning">
+                                    <th scope="row">2017-06-14 17:23:09</th>
+                                    <th>258 Lotus Bangpakok_R</th>
+                                    <th>Response time is too high</th>
+                                  </tr>
+                                  <tr class="table-white-warning">
+                                    <th scope="row">2017-06-14 16:37:09</th>
+                                    <th>271 Big C Donmuang_V80276B</th>
+                                    <th>Response time is too high</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:27:09</th>
+                                    <th>265 Lotus Minburee_V00686B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:17:18</th>
+                                    <th>341 Big C Ladprao_V18568B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:17:18</th>
+                                    <th>341 Big C Ladprao_V18568B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:17:18</th>
+                                    <th>341 Big C Ladprao_V18568B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="container-fluid">
+                          <div class="row"><h4>BMA</h4></div>
+                          <div class="row">
+                            <div class="div-alerts">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th>Timestamp</th>
+                                    <th>Host</th>
+                                    <th>Issue</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 17:54:02</th>
+                                    <th>271 Big C Donmuang_V80276B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:27:09</th>
+                                    <th>265 Lotus Minburee_V00686B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:17:18</th>
+                                    <th>341 Big C Ladprao_V18568B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="container-fluid">
+                          <div class="row"><h4>Central</h4></div>
+                          <div class="row">
+                            <div class="div-alerts">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th>Timestamp</th>
+                                    <th>Host</th>
+                                    <th>Issue</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 17:54:02</th>
+                                    <th>271 Big C Donmuang_V80276B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-warning">
+                                    <th scope="row">2017-06-14 17:23:09</th>
+                                    <th>258 Lotus Bangpakok_R</th>
+                                    <th>Response time is too high</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:27:09</th>
+                                    <th>265 Lotus Minburee_V00686B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                  <tr class="table-white-danger">
+                                    <th scope="row">2017-06-14 16:17:18</th>
+                                    <th>341 Big C Ladprao_V18568B</th>
+                                    <th>Unavailable by ICMP</th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#alerts" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#alerts" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div></div>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col">
+                  <div class="row"><h2><b>Network Shop Traffic</b></h2></div>
+                  <div class="row"><div id="traffic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                      <div class="carousel-item active">
+                        <div class="container-fluid">
+                          <div class="row"><h4>Summary</h4></div>
+                          <div class="row">
+                            <div class="div-traffic">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th>Host</th>
+                                    <th>Traffic</th>
+                                    <th>Traffic (%)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">271 Big C Donmuang_V80276B</th>
+                                    <th class="table-white-danger">18 Mbps</th>
+                                    <th class="table-white-danger">95 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">258 Lotus Bangpakok_R</th>
+                                    <th class="table-white-danger">15 Mbps</th>
+                                    <th class="table-white-danger">87 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">263 Lotus Bangpoo_V03071B</th>
+                                    <th class="table-white-warning">8.5 Mbps</th>
+                                    <th class="table-white-warning">63 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">265 Lotus Minburee_V00686B</th>
+                                    <th>4 Mbps</th>
+                                    <th>41 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">341 Big C Ladprao_V18568B</th>
+                                    <th>56.75 Kbps</th>
+                                    <th>8 %</th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="container-fluid">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th></th>
+                                    <th>Traffic</th>
+                                    <th>Traffic (%)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Maximum</th>
+                                    <td class="table-white-danger">18 Mbps</td>
+                                    <td class="table-white-danger">95 %</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Averag</th>
+                                    <td class="table-white-warning">9.5 Mbps</td>
+                                    <td class="table-white-warning">73 %</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Minimum</th>
+                                    <td>56.75 Kbps</td>
+                                    <td>8 %</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="container-fluid">
+                          <div class="row"><h4>BMA</h4></div>
+                          <div class="row">
+                            <div class="div-traffic">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th>Host</th>
+                                    <th>Traffic</th>
+                                    <th>Traffic (%)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">271 Big C Donmuang_V80276B</th>
+                                    <th class="table-white-danger">18 Mbps</th>
+                                    <th class="table-white-danger">95 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">258 Lotus Bangpakok_R</th>
+                                    <th class="table-white-danger">15 Mbps</th>
+                                    <th class="table-white-danger">87 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">263 Lotus Bangpoo_V03071B</th>
+                                    <th class="table-white-warning">8.5 Mbps</th>
+                                    <th class="table-white-warning">63 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">265 Lotus Minburee_V00686B</th>
+                                    <th>4 Mbps</th>
+                                    <th>41 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">341 Big C Ladprao_V18568B</th>
+                                    <th>56.75 Kbps</th>
+                                    <th>8 %</th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="container-fluid">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th></th>
+                                    <th>Traffic</th>
+                                    <th>Traffic (%)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Maximum</th>
+                                    <td class="table-white-danger">18 Mbps</td>
+                                    <td class="table-white-danger">95 %</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Averag</th>
+                                    <td class="table-white-warning">9.5 Mbps</td>
+                                    <td class="table-white-warning">73 %</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Minimum</th>
+                                    <td>56.75 Kbps</td>
+                                    <td>8 %</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="container-fluid">
+                          <div class="row"><h4>Central</h4></div>
+                          <div class="row">
+                            <div class="div-traffic">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th>Host</th>
+                                    <th>Traffic</th>
+                                    <th>Traffic (%)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">271 Big C Donmuang_V80276B</th>
+                                    <th class="table-white-danger">18 Mbps</th>
+                                    <th class="table-white-danger">95 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">258 Lotus Bangpakok_R</th>
+                                    <th class="table-white-danger">15 Mbps</th>
+                                    <th class="table-white-danger">87 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">263 Lotus Bangpoo_V03071B</th>
+                                    <th class="table-white-warning">8.5 Mbps</th>
+                                    <th class="table-white-warning">63 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">265 Lotus Minburee_V00686B</th>
+                                    <th>4 Mbps</th>
+                                    <th>41 %</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">341 Big C Ladprao_V18568B</th>
+                                    <th>56.75 Kbps</th>
+                                    <th>8 %</th>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="container-fluid">
+                              <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                <thead>
+                                  <tr class="table-white">
+                                    <th></th>
+                                    <th>Traffic</th>
+                                    <th>Traffic (%)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Maximum</th>
+                                    <td class="table-white-danger">18 Mbps</td>
+                                    <td class="table-white-danger">95 %</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Averag</th>
+                                    <td class="table-white-warning">9.5 Mbps</td>
+                                    <td class="table-white-warning">73 %</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Minimum</th>
+                                    <td>56.75 Kbps</td>
+                                    <td>8 %</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#traffic" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#traffic" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <iframe src="http://172.19.132.116/zabbix/zabbix.php?action=map.view&sysmapid=<%= map_id %>" height=900px width=800px></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+<footer>
+  <% include ../partials/footer %>
+</footer>
+<script>
+</script>
+</body>
+</html>

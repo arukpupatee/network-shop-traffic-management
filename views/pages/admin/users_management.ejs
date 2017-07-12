@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% path = "../../"; %>
+  <% include ../../partials/head %>
+</head>
+<body class="bg-gray">
+  <header>
+    <% include ../../partials/header %>
+  </header>
+  <main>
+    <div class="bg-gray">
+      <div class="container">
+        <br><br>
+        <div class="row">
+          <h2>Users Management</h2>
+        </div><br><br>
+        <div class="row">
+          <table class="table table-responsive table-sm table-bordered table-hover table-white">
+            <thead>
+              <tr class="table-white">
+                <th>ID</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (var i = 0; i < all_users.length; i++) { %>
+                <tr class="table-white" id="<%= all_users[i].id %>">
+                  <th scope="row"><%= all_users[i].id %></th>
+                  <th><%= all_users[i].username %></th>
+                  <th><%= all_users[i].role %></th>
+                  <th><button type="button" class="btn btn-danger" onclick="delete_user('<%= all_users[i].id %>')">Delete</button></th>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div><br>
+        <div class="row">
+          <a class="btn btn-primary btn-lg" href="<%= baseUrl %>/user/signup" role="button">Signup</a>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../../partials/footer %>
+  </footer>
+  <script>
+  function ajax_post(path,json_obj,doFunction){
+    var protocol = window.location.protocol;
+    var hostname = window.location.hostname;
+    var port = window.location.port;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText); // retrieve response from server
+        doFunction(response);
+      }
+    }
+    xmlhttp.open("POST", protocol+"//"+hostname+":"+port+""+path, true);
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(json_obj));
+  }
+  function delete_user(id){
+    var user_id = id;
+    var obj = {};
+    obj.user_id = user_id;
+    ajax_post('<%= baseUrl %>/admin/users_management/delete_user',obj,function(return_obj){
+      window.location.reload(false);
+    });
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% path = "../../"; %>
+  <% include ../../partials/head %>
+</head>
+<body class="bg-gray">
+  <header>
+    <% include ../../partials/header %>
+  </header>
+  <main>
+    <div class="bg-gray">
+      <div class="container">
+        <br><br>
+        <form autocomplete="off" method="POST" action="<%= baseUrl %>/admin/config">
+          <div class="form-group row">
+            <h2><b>Configuration</b></h2>
+          </div>
+          <div class="form-group row">
+            <h4><b>Zabbix</b></h4>
+          </div>
+          <div class="form-group row">
+            <label for="zabbix_url" class="col-sm-2 col-form-label">Zabbix URL</label>
+            <div class="col-sm-4">
+              <input type="url" class="form-control" name="zabbix_url" placeholder="http://your_zabbix_server_address/zabbix" value="<%= config.zabbix.url %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="zabbix_username" class="col-sm-2 col-form-label">Zabbix Username</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="zabbix_username" placeholder="Admin" value="<%= config.zabbix.username %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="zabbix_password" class="col-sm-2 col-form-label">Zabbix Password</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" name="zabbix_password" placeholder="password" value="<%= config.zabbix.password %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <h4><b>Router Groups</b></h4>
+          </div>
+          <div class="form-group row">
+            <label for="router_groups_summary_name" class="col-sm-2 col-form-label">Router Group Summary Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="router_groups_summary_name" placeholder="Group Name" value="<%= config.router_groups.summary_name %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Router Groups Name Format</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="router_groups_name_starts_with" placeholder="Starts with" value="<%= config.router_groups.name_starts_with %>">
+            </div>
+            <div class="col-sm-1">
+              <input type="text" class="form-control" value="Area" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Router Subgroups Name Format</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="router_groups_subgroup_name_starts_with" placeholder="Starts with" value="<%= config.router_groups.subgroup_name_starts_with %>">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="Area < Subgroup" readonly>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="router_groups_subgroup_name_ends_with" placeholder="Ends with" value="<%= config.router_groups.subgroup_name_ends_with %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <h4><b>Maps</b></h4>
+          </div>
+          <div class="form-group row">
+            <label for="maps_summary_name" class="col-sm-2 col-form-label">Map Summary Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="maps_summary_name" placeholder="Map Name" value="<%= config.maps.summary_name %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Maps Name Format</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="maps_name_starts_with" placeholder="Starts with" value="<%= config.maps.name_starts_with %>">
+            </div>
+            <div class="col-sm-1">
+              <input type="text" class="form-control" value="Area" readonly>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Submaps Name Format</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="maps_submap_name_starts_with" placeholder="Starts with" value="<%= config.maps.submap_name_starts_with %>">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="Area < Submap" readonly>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="maps_submap_name_ends_with" placeholder="Ends with" value="<%= config.maps.submap_name_ends_with %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Detail Maps Name Format</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="maps_detail_map_name_starts_with" placeholder="Starts with" value="<%= config.maps.detail_map_name_starts_with %>">
+            </div>
+            <div class="col-sm-1">
+              <input type="text" class="form-control" value="Area" readonly>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" name="maps_detail_map_name_ends_with" placeholder="Ends with" value="<%= config.maps.detail_map_name_ends_with %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <h4><b>Alerts</b></h4>
+          </div>
+          <div id="alerts_trigger">
+            <% for (var i = 0; i < config.alerts.triggers.length; i++) {%>
+              <div class="form-group row" id="trigger<%= i %>">
+                <label class="col-sm-2 col-form-label">Trigger Name</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="alerts_trigger_name" placeholder="Triggers Display Expression in Zabbix" value="<%= config.alerts.triggers[i].name %>">
+                </div>
+                <label class="col-sm-1 col-form-label">Display</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="alerts_trigger_display" placeholder="Alert Text" value="<%= config.alerts.triggers[i].display %>">
+                </div>
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-danger" onclick="delete_trigger(<%= i %>)">Delete</button>
+                </div>
+              </div>
+            <% } %>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-11"></div>
+            <div class="col-sm-1">
+              <button type="button" class="btn btn-success" onclick="add_trigger()">Add Triggers</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Danger when Triggers priority more than</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="alerts_danger_priority" placeholder="Triggers priority" value="<%= config.alerts.danger_when_priority_more_than %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Warning when Triggers priority more than</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="alerts_warning_priority" placeholder="Triggers priority" value="<%= config.alerts.warning_when_priority_more_than %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Total Alerts show</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="alerts_total_shows" placeholder="Number of alerts to show" value="<%= config.alerts.total_shows %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Refresh rate</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="alerts_refresh_rate" placeholder="Time to refresh" value="<%= config.alerts.refresh_rate %>">
+            </div>
+            <label class="col-sm-1 col-form-label">seconds</label>
+          </div>
+          <div class="form-group row">
+            <h4><b>Traffics</b></h4>
+          </div>
+          <div id="interfaces">
+            <% for (var i = 0; i < config.traffics.interfaces.length; i++) {%>
+              <div class="form-group row" id="interface_<%= i %>">
+                <label class="col-sm-2 col-form-label">Interface</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" name="traffics_interfaces" placeholder="Interface Name" value="<%= config.traffics.interfaces[i] %>">
+                </div>
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-danger" onclick="delete_interface(<%= i %>)">Delete</button>
+                </div>
+              </div>
+            <% } %>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-success" onclick="add_interface()">Add Interface</button>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">ICMP ping key</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="traffics_icmp_ping_key_" placeholder="Key of item to monitor icmp ping" value="<%= config.traffics.icmp_ping_key_ %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Danger when Traffics percent more than</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="traffics_danger_percent" placeholder="Traffics percent" value="<%= config.traffics.danger_when_traffic_percent_more_than %>">
+            </div>
+            <label class="col-sm-1 col-form-label">%</label>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Warning when Traffics percent more than</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="traffics_warning_percent" placeholder="Traffics percent" value="<%= config.traffics.warning_when_traffic_percent_more_than %>">
+            </div>
+            <label class="col-sm-1 col-form-label">%</label>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Total Traffics show</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="traffics_total_shows" placeholder="Number of traffics to show" value="<%= config.traffics.total_shows %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Refresh rate</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="traffics_refresh_rate" placeholder="Time to refresh" value="<%= config.traffics.refresh_rate %>">
+            </div>
+            <label class="col-sm-1 col-form-label">seconds</label>
+          </div>
+          <br>
+          <div class="form-group row">
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-primary">Change Configs</button>
+            </div>
+            <div class="col-sm-2">
+              <button type="button" class="btn btn-warning" onclick="goBack()">Cancel</button>
+            </div>
+          </div>
+        </form>
+        <br><br>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../../partials/footer %>
+  </footer>
+  <script>
+  var trigger_count = <%= config.alerts.triggers.length %> - 1;
+  var interfaces_count = <%= config.traffics.interfaces.length %> - 1;
+
+  function add_trigger(){
+    trigger_count = trigger_count + 1;
+    var alerts_trigger = document.getElementById("alerts_trigger");
+    var new_trigger = '<div class="form-group row" id="trigger'+trigger_count+'">';
+    new_trigger += '<div class="form-group row">';
+    new_trigger += '<label class="col-sm-2 col-form-label">Trigger Name</label>';
+    new_trigger += '<div class="col-sm-4">';
+    new_trigger += '<input type="text" class="form-control" name="alerts_trigger_name" placeholder="Triggers Display Expression in Zabbix">';
+    new_trigger += '</div>';
+    new_trigger += '<label class="col-sm-1 col-form-label">Display</label>';
+    new_trigger += '<div class="col-sm-4">';
+    new_trigger += '<input type="text" class="form-control" name="alerts_trigger_display" placeholder="Alert Text">';
+    new_trigger += '</div>';
+    new_trigger += '<div class="col-sm-1">';
+    new_trigger += '<button type="button" class="btn btn-danger" onclick="delete_trigger('+trigger_count+')">Delete</button>';
+    new_trigger += '</div>';
+    new_trigger += '</div>';
+    alerts_trigger.innerHTML += new_trigger;
+  }
+  function delete_trigger(i){
+    var trigger = document.getElementById("trigger"+i);
+    trigger.outerHTML = "";
+    delete trigger;
+  }
+  function add_interface(){
+    interfaces_count = interfaces_count + 1;
+    var interfaces = document.getElementById("interfaces");
+    var new_interface = '<div class="form-group row" id="interface_'+interfaces_count+'">';
+    new_interface += '<label class="col-sm-2 col-form-label">Interface</label>';
+    new_interface += '<div class="col-sm-4">';
+    new_interface += '<input type="text" class="form-control" name="traffics_interfaces" placeholder="Interface Name">';
+    new_interface += '</div>';
+    new_interface += '<div class="col-sm-1">';
+    new_interface += '<button type="button" class="btn btn-danger" onclick="delete_interface('+interfaces_count+')">Delete</button>';
+    new_interface += '</div>';
+    new_interface += '</div>';
+    interfaces.innerHTML += new_interface;
+  }
+  function delete_interface(i){
+    var delete_interface = document.getElementById("interface_"+i);
+    delete_interface.outerHTML = "";
+    delete delete_interface;
+  }
+  function goBack(){
+    window.history.back();
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% path = "../../"; %>
+  <% include ../../partials/head %>
+</head>
+<body class="bg-gray">
+  <header>
+    <% include ../../partials/header %>
+  </header>
+  <main>
+    <div class="bg-gray">
+      <div class="container">
+        <br><br>
+        <form autocomplete="off" method="POST" action="<%= baseUrl %>/user/signup">
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <h2><b>Signup</b></h2>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <label for="username" class="col-sm-1 col-form-label">Username</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <label for="password" class="col-sm-1 col-form-label">Password</label>
+            <div class="col-sm-3">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <label for="password" class="col-sm-1 col-form-label">Role</label>
+            <div class="col-sm-3">
+              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="role" id="role">
+                <option value="user" selected>User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+              <button type="submit" class="btn btn-primary">Signup</button>
+            </div>
+          </div>
+          <% if (message.length > 0) { %>
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+              <div class="alert alert-danger"><%= message %></div>
+            </div>
+          </div>
+          <% } %>
+        </form>
+        <br><br>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../../partials/footer %>
+  </footer>
+  <script>
+  </script>
+</body>
+</html>

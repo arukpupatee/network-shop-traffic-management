@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% path = "../"; %>
+  <% include ../partials/head %>
+</head>
+<body class="bg-gray">
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <main>
+    <div class="bg-gray">
+      <div>
+        <div class="row">
+          <div class="col">
+            <% var data= {'btn_group_label':btn_group_label,'btn_group_list':btn_group_list};%>
+            <% include ../partials/btn-group %>
+          </div>
+        </div><br>
+        <div class="col">
+          <div class="col"><div class="row"><h1><b><%= screen_title %></b></h1></div></div><br>
+          <div class="row justify-content-around">
+            <div class="col">
+              <div class="iframe-responsive">
+                <iframe src="http://172.19.132.116/zabbix/screens.php?fullscreen=1&elementid=<%= screen_id %>" height=1300px width=1300px></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+  <script>
+
+  </script>
+</body>
+</html>

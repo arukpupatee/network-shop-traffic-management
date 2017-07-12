@@ -1,0 +1,28 @@
+{
+  "name": "network-shop-traffic-management",
+  "version": "1.0.0",
+  "description": "Network Shop Traffic Management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Aruk Pupatee",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.4.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "fs": "0.0.1-security",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.81.0",
+    "sqlite3": "^3.1.8",
+    "uuid": "^3.1.0"
+  }
+}
