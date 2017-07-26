@@ -19,6 +19,7 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "fs": "0.0.1-security",
+    "mathjs": "^3.14.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.81.0",

@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <% path = "../"; %>
-  <% include ../partials/head %>
-  <% path = "../"; %>
-  <% include ../partials/head-fancytree %>
-  <script type="text/javascript">
-    $(function(){
-      // Create the tree inside the <div id="tree"> element.
-      $("#map_tree").fancytree({
-        source: [
-          <% for(i=0;i<map_tree_source.length;i++) {%>
-            {title: "<%= map_tree_source[i].title %>", key: "<%= map_tree_source[i].key %>", folder: true, children: [
-              <% for(j=0;j<map_tree_source[i].children.length;j++) {%>
-                {title: "<%= map_tree_source[i].children[j].title %>", key: "<%= map_tree_source[i].children[j].key %>", href:"<%= map_tree_source[i].children[j].href %>"},
-              <% } %>
-            ]},
-          <% } %>
-        ],
-        icon: false,
-        autoCollapse: true,
-        tooltip: true,
-        click: function(event, data){
-          var node = data.node;
-          if(!node.folder){
-            window.location.href = "<%=baseUrl%>"+node.data.href;
-          }
-        }
-      });
-    });
-  </script>
+    <% include ../partials/head %>
+      <% path = "../"; %>
+        <% include ../partials/head-fancytree %>
+          <script type="text/javascript">
+            $(function () {
+              // Create the tree inside the <div id="tree"> element.
+              $("#map_tree").fancytree({
+                source: [
+                  <% for(i=0;i<map_tree_source.length;i++) {%> {
+                    title: "<%= map_tree_source[i].title %>",
+                    key: "<%= map_tree_source[i].key %>",
+                    folder: true,
+                    children: [
+                      <% for(j=0;j<map_tree_source[i].children.length;j++) {%> {
+                        title: "<%= map_tree_source[i].children[j].title %>",
+                        key: "<%= map_tree_source[i].children[j].key %>",
+                        href: "<%= map_tree_source[i].children[j].href %>"
+                      },
+                      <% } %>
+                    ]
+                  },
+                  <% } %>
+                ],
+                icon: false,
+                autoCollapse: true,
+                tooltip: true,
+                click: function (event, data) {
+                  var node = data.node;
+                  if (!node.folder) {
+                    window.location.href = "<%=baseUrl%>" + node.data.href;
+                  }
+                }
+              });
+            });
+          </script>
 </head>
+
 <body class="bg-gray">
   <header>
     <% include ../partials/header %>
@@ -62,9 +71,10 @@
   </footer>
 
   <script>
-    function collapse_map_tree(){
+    function collapse_map_tree() {
       $('#map_tree').collapse('toggle');
     }
   </script>
 </body>
+
 </html>

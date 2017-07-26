@@ -1,10 +1,13 @@
 <div class="btn-group" role="group" aria-label="Choose region">
   <% if (data.btn_group_label != '') { %>
-    <a class="btn label-true" style="color:#fff;" role="button"><%= data.btn_group_label %></a>
-  <% } %>
-  <% for (var i = 0; i < data.btn_group_list.length; i++) {%>
-    <a href="<%= baseUrl %><%= data.btn_group_list[i].src %>" class="btn btn-true <% if (data.btn_group_list[i].active) { %> active <% } %>" role="button" aria-pressed="true">
-      <%= data.btn_group_list[i].title %>
+    <a class="btn label-true" style="color:#fff;" role="button">
+      <%= data.btn_group_label %>
     </a>
-  <% } %>
+    <% } %>
+      <% for (var i = 0; i < data.btn_group_list.length; i++) {%>
+        <a href="<%= baseUrl %><%= data.btn_group_list[i].src %>" class="btn btn-true <% if (data.btn_group_list[i].active) { %> active <% } %>"
+          role="button" aria-pressed="true">
+          <%= data.btn_group_list[i].title %>
+        </a>
+        <% } %>
 </div>

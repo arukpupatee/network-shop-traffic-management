@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <% path = "../"; %>
-  <% include ../partials/head %>
+    <% include ../partials/head %>
 </head>
+
 <body class="bg-gray">
   <header>
     <% include ../partials/header %>
   </header>
   <main>
-    <div >
+    <div>
       <div class="bg-gray">
         <div class="row">
           <div class="col">
             <% var data= {'btn_group_label':btn_group_label,'btn_group_list':btn_group_list};%>
-            <% include ../partials/btn-group %>
+              <% include ../partials/btn-group %>
           </div>
         </div><br>
         <div class="row justify-content-around">
@@ -22,15 +24,23 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col">
-                  <div class="row"><h1><b><%= part_title %></b></h1></div>
-                  <div class="row"><h2><b>Alerts</b></h2></div>
+                  <div class="row">
+                    <h1><b><%= part_title %></b></h1>
+                  </div>
+                  <div class="row">
+                    <h2><b>Alerts</b></h2>
+                  </div>
                   <div class="row">
                     <div id="alerts" class="carousel slide" data-ride="carousel">
                       <div class="carousel-inner" role="listbox">
                         <% for (var j = 0; j < area.length; j++) {%>
                           <div class="carousel-item<% if (j==0) {%> active<% }%>">
                             <div class="container-fluid">
-                              <div class="row"><h4><%= area[j].title %></h4></div>
+                              <div class="row">
+                                <h4>
+                                  <%= area[j].title %>
+                                </h4>
+                              </div>
                               <div class="row">
                                 <div class="div-alerts">
                                   <table class="table table-responsive table-sm table-bordered table-hover table-white">
@@ -44,195 +54,256 @@
                                     <tbody id="alert_tbody-<%= area[j].group_id %>">
                                       <% for (var i = 0; i < area[j].total_alerts_show; i++) {%>
                                         <tr class="table-white<% if (area[j].alert_hosts[i].priority >= alerts_danger_priority) {%>-danger<% } else if(area[j].alert_hosts[i].priority >= alerts_warning_priority) { %>-warning<% }%>">
-                                          <th scope="row"><%= area[j].alert_hosts[i].timestamp %></th>
-                                          <th><%= area[j].alert_hosts[i].name %></th>
-                                          <th><%= area[j].alert_hosts[i].issue %></th>
+                                          <th scope="row">
+                                            <%= area[j].alert_hosts[i].timestamp %>
+                                          </th>
+                                          <th>
+                                            <%= area[j].alert_hosts[i].name %>
+                                          </th>
+                                          <th>
+                                            <%= area[j].alert_hosts[i].issue %>
+                                          </th>
                                         </tr>
                                         <% } %>
-                                      </tbody>
-                                    </table>
-                                  </div>
+                                    </tbody>
+                                  </table>
                                 </div>
                               </div>
                             </div>
-                            <% } %>
                           </div>
-                          <a class="carousel-control-prev" href="#alerts" role="button" data-slide="prev">
+                          <% } %>
+                      </div>
+                      <a class="carousel-control-prev" role="button" onclick="slideCarousels(['alerts', 'traffic'], 'prev')">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span></a>
-                            <a class="carousel-control-next" href="#alerts" role="button" data-slide="next">
+                      <a class="carousel-control-next" role="button" onclick="slideCarousels(['alerts', 'traffic'], 'next')">
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
                               <span class="sr-only">Next</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <h2><b>Network Shop Traffic</b></h2>
+                  </div>
+                  <div class="row">
+                    <div id="traffic" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner" role="listbox">
+                        <% for (var j = 0; j < area.length; j++) {%>
+                          <div class="carousel-item<% if(j==0) {%> active<% }%>">
+                            <div class="container-fluid">
+                              <div class="row">
+                                <h4>
+                                  <%= area[j].title %>
+                                </h4>
+                              </div>
+                              <div class="row">
+                                <div class="div-traffic">
+                                  <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                    <thead>
+                                      <tr class="table-white">
+                                        <th>Host</th>
+                                        <th>Traffic</th>
+                                        <th>Traffic (%)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="traffic_tbody-<%= area[j].group_id %>">
+                                      <% for (var i = 0; i < area[j].total_traffics_show; i++) {%>
+                                        <tr class="table-white<% if(area[j].hosts_with_traffic[i].traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].hosts_with_traffic[i].traffic_percent >= traffics_warning_percent) { %>-warning<% }%>">
+                                          <th scope="row">
+                                            <%= area[j].hosts_with_traffic[i].name %>
+                                          </th>
+                                          <th>
+                                            <%= area[j].hosts_with_traffic[i].traffic %>
+                                          </th>
+                                          <th>
+                                            <%= area[j].hosts_with_traffic[i].traffic_percent %> %</th>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div><br>
+                              <div class="row">
+                                <div class="container-fluid">
+                                  <table class="table table-responsive table-sm table-bordered table-hover table-white">
+                                    <thead>
+                                      <tr class="table-white">
+                                        <th></th>
+                                        <th>Traffic</th>
+                                        <th>Traffic (%)</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr class="table-white<% if(area[j].max_traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].max_traffic_percent >= traffics_warning_percent) { %>-warning<% }%>"
+                                        id="max_traffic_tr-<%= area[j].group_id %>">
+                                        <th scope="row">Maximum (Now)</th>
+                                        <th id="max_traffic-<%= area[j].group_id %>">
+                                          <%= area[j].max_traffic %>
+                                        </th>
+                                        <th id="max_traffic_percent-<%= area[j].group_id %>">
+                                          <%= area[j].max_traffic_percent %> %</th>
+                                      </tr>
+                                      <tr class="table-white<% if(area[j].avg_traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].avg_traffic_percent >= traffics_warning_percent) { %>-warning<% }%>"
+                                        id="avg_traffic_tr-<%= area[j].group_id %>">
+                                        <th scope="row">Average Peak</th>
+                                        <th id="avg_traffic-<%= area[j].group_id %>">
+                                          <%= area[j].avg_traffic %>
+                                        </th>
+                                        <th id="avg_traffic_percent-<%= area[j].group_id %>">
+                                          <%= area[j].avg_traffic_percent %> %</th>
+                                      </tr>
+                                      <tr class="table-white<% if(area[j].min_traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].min_traffic_percent >= traffics_warning_percent) { %>-warning<% }%>"
+                                        id="min_traffic_tr-<%= area[j].group_id %>">
+                                        <th scope="row">Minimum (Now)</th>
+                                        <th id="min_traffic-<%= area[j].group_id %>">
+                                          <%= area[j].min_traffic %>
+                                        </th>
+                                        <th id="min_traffic_percent-<%= area[j].group_id %>">
+                                          <%= area[j].min_traffic_percent %> %</th>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div><br>
-                      <div class="row">
-                        <div class="col">
-                          <div class="row"><h2><b>Network Shop Traffic</b></h2></div>
-                          <div class="row">
-                            <div id="traffic" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner" role="listbox">
-                              <% for (var j = 0; j < area.length; j++) {%>
-                                <div class="carousel-item<% if(j==0) {%> active<% }%>">
-                                  <div class="container-fluid">
-                                    <div class="row"><h4><%= area[j].title %></h4></div>
-                                    <div class="row">
-                                      <div class="div-traffic">
-                                        <table class="table table-responsive table-sm table-bordered table-hover table-white">
-                                          <thead>
-                                            <tr class="table-white">
-                                              <th>Host</th>
-                                              <th>Traffic</th>
-                                              <th>Traffic (%)</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody id="traffic_tbody-<%= area[j].group_id %>">
-                                            <% for (var i = 0; i < area[j].total_traffics_show; i++) {%>
-                                              <tr class="table-white<% if(area[j].hosts_with_traffic[i].traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].hosts_with_traffic[i].traffic_percent >= traffics_warning_percent) { %>-warning<% }%>">
-                                                <th scope="row"><%= area[j].hosts_with_traffic[i].name %></th>
-                                                <th><%= area[j].hosts_with_traffic[i].traffic %></th>
-                                                <th><%= area[j].hosts_with_traffic[i].traffic_percent %> %</th>
-                                              </tr>
-                                              <% } %>
-                                            </tbody>
-                                          </table>
-                                        </div>
-                                      </div><br>
-                                      <div class="row">
-                                        <div class="container-fluid">
-                                          <table class="table table-responsive table-sm table-bordered table-hover table-white">
-                                            <thead>
-                                              <tr class="table-white">
-                                                <th></th>
-                                                <th>Traffic</th>
-                                                <th>Traffic (%)</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr class="table-white<% if(area[j].max_traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].max_traffic_percent >= traffics_warning_percent) { %>-warning<% }%>" id="max_traffic_tr-<%= area[j].group_id %>">
-                                                <th scope="row">Maximum</th>
-                                                <th id="max_traffic-<%= area[j].group_id %>"><%= area[j].max_traffic %></th>
-                                                <th id="max_traffic_percent-<%= area[j].group_id %>"><%= area[j].max_traffic_percent %> %</th>
-                                              </tr>
-                                              <tr class="table-white<% if(area[j].avg_traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].avg_traffic_percent >= traffics_warning_percent) { %>-warning<% }%>" id="avg_traffic_tr-<%= area[j].group_id %>">
-                                                <th scope="row">Average</th>
-                                                <th id="avg_traffic-<%= area[j].group_id %>"><%= area[j].avg_traffic %></th>
-                                                <th id="avg_traffic_percent-<%= area[j].group_id %>"><%= area[j].avg_traffic_percent %> %</th>
-                                              </tr>
-                                              <tr  class="table-white<% if(area[j].min_traffic_percent >= traffics_danger_percent) {%>-danger<% } else if(area[j].min_traffic_percent >= traffics_warning_percent) { %>-warning<% }%>" id="min_traffic_tr-<%= area[j].group_id %>">
-                                                <th scope="row">Minimum</th>
-                                                <th id="min_traffic-<%= area[j].group_id %>"><%= area[j].min_traffic %></th>
-                                                <th id="min_traffic_percent-<%= area[j].group_id %>"><%= area[j].min_traffic_percent %> %</th>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <% } %>
-                                </div>
-                                <a class="carousel-control-prev" href="#traffic" role="button" data-slide="prev">
+                          <% } %>
+                      </div>
+                      <a class="carousel-control-prev" role="button" onclick="slideCarousels(['alerts', 'traffic'], 'prev')">
                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                   <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#traffic" role="button" data-slide="next">
+                      <a class="carousel-control-next" role="button" onclick="slideCarousels(['alerts', 'traffic'], 'next')">
                                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                   <span class="sr-only">Next</span>
                                 </a>
-                              </div></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <iframe src="http://172.19.132.116/zabbix/zabbix.php?action=map.view&fullscreen=1&sysmapid=<%= map_id %>" height=900px width=800px></iframe>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </main>
-        <footer>
-          <% include ../partials/footer %>
-        </footer>
-        <script>
+          <div>
+            <iframe src="http://172.19.132.116/zabbix/zabbix.php?action=map.view&fullscreen=1&sysmapid=<%= map_id %>" height=900px width=800px></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <script>
 
+    set_interval();
+    
+
+    function set_interval(){
         <% for (var j = 0; j < area.length; j++) {%>
-        setInterval(function(){
-          get_alerts(<%= area[j].group_id %>);
-        },<%= alerts_refresh_rate %>);
-        setInterval(function(){
-          get_traffics(<%= area[j].group_id %>);
-        },<%= traffics_refresh_rate %>);
+          setInterval(function () {
+            get_alerts(<%= area[j].group_id %>);
+          }, <%= alerts_refresh_rate %>);
+          setInterval(function () {
+            get_traffics(<%= area[j].group_id %>);
+          }, <%= traffics_refresh_rate %>);
         <% } %>
+    }
 
-        function get_alerts(group_id){
-          ajax_get("/networkshoptraffic/alerts/"+group_id,function(res_obj){
-            var alert_tbody = document.getElementById("alert_tbody-"+group_id);
-            alert_tbody.innerHTML = ""
-            for(var i=0;i<res_obj.alert_hosts.length;i++){
-              let alert_tbody_html = ""
-              alert_tbody_html += '<tr class="';
-              alert_tbody_html += (res_obj.alert_hosts[i].priority>=<%= alerts_danger_priority %>)?"table-white-danger":(res_obj.alert_hosts[i].priority>=<%= alerts_warning_priority %>)?"table-white-warning":"table-white";
-              alert_tbody_html += '">';
-              alert_tbody_html += "<th scope='row'>"+res_obj.alert_hosts[i].timestamp+"</th>";
-              alert_tbody_html += "<th>"+res_obj.alert_hosts[i].name+"</th>";
-              alert_tbody_html += "<th>"+res_obj.alert_hosts[i].issue+"</th> </tr>";
-              alert_tbody.innerHTML += alert_tbody_html;
-            }
-          });
+    function get_alerts(group_id) {
+      ajax_get("/networkshoptraffic/alerts/" + group_id, function (res_obj) {
+        var alert_tbody = document.getElementById("alert_tbody-" + group_id);
+        alert_tbody.innerHTML = ""
+        for (var i = 0; i < res_obj.alert_hosts.length; i++) {
+          let alert_tbody_html = ""
+          alert_tbody_html += '<tr class="';
+          alert_tbody_html += (res_obj.alert_hosts[i].priority >= <%= alerts_danger_priority %>) ?
+            "table-white-danger" : (res_obj.alert_hosts[i].priority >= <%= alerts_warning_priority %>) ?
+            "table-white-warning" : "table-white";
+          alert_tbody_html += '">';
+          alert_tbody_html += "<th scope='row'>" + res_obj.alert_hosts[i].timestamp + "</th>";
+          alert_tbody_html += "<th>" + res_obj.alert_hosts[i].name + "</th>";
+          alert_tbody_html += "<th>" + res_obj.alert_hosts[i].issue + "</th> </tr>";
+          alert_tbody.innerHTML += alert_tbody_html;
         }
+      });
+    }
 
-        function get_traffics(group_id){
-          ajax_get("/networkshoptraffic/traffics/"+group_id,function(res_obj){
-            var max_traffic_tr = document.getElementById("max_traffic_tr-"+group_id);
-            var avg_traffic_tr = document.getElementById("avg_traffic_tr-"+group_id);
-            var min_traffic_tr = document.getElementById("min_traffic_tr-"+group_id);
-            max_traffic_tr.className = (res_obj.max_traffic_percent>=<%= traffics_danger_percent %>)?"table-white-danger":(res_obj.max_traffic_percent>=<%= traffics_warning_percent %>)?"table-white-warning":"table-white";
-            avg_traffic_tr.className = (res_obj.avg_traffic_percent>=<%= traffics_danger_percent %>)?"table-white-danger":(res_obj.avg_traffic_percent>=<%= traffics_warning_percent %>)?"table-white-warning":"table-white";
-            min_traffic_tr.className = (res_obj.min_traffic_percent>=<%= traffics_danger_percent %>)?"table-white-danger":(res_obj.min_traffic_percent>=<%= traffics_warning_percent %>)?"table-white-warning":"table-white";
-            document.getElementById("max_traffic-"+group_id).innerHTML = res_obj.max_traffic;
-            document.getElementById("max_traffic_percent-"+group_id).innerHTML = res_obj.max_traffic_percent+" %";
-            document.getElementById("avg_traffic-"+group_id).innerHTML = res_obj.avg_traffic;
-            document.getElementById("avg_traffic_percent-"+group_id).innerHTML = res_obj.avg_traffic_percent+" %";
-            document.getElementById("min_traffic-"+group_id).innerHTML = res_obj.min_traffic;
-            document.getElementById("min_traffic_percent-"+group_id).innerHTML = res_obj.min_traffic_percent+" %";
-            var traffic_tbody = document.getElementById("traffic_tbody-"+group_id);
-            traffic_tbody.innerHTML = ""
-            if(res_obj.hosts_with_traffic != undefined){
-              for(var i=0;i<res_obj.hosts_with_traffic.length;i++){
-                let traffic_tbody_html = ""
-                traffic_tbody_html += '<tr class="';
-                traffic_tbody_html += (Number(res_obj.hosts_with_traffic[i].traffic_percent)>=<%= traffics_danger_percent %>)?"table-white-danger":(Number(res_obj.hosts_with_traffic[i].traffic_percent)>=<%= traffics_warning_percent %>)?"table-white-warning":"table-white";
-                traffic_tbody_html += '">';
-                traffic_tbody_html += "<th scope='row'>"+res_obj.hosts_with_traffic[i].name+"</th>";
-                traffic_tbody_html += "<th>"+res_obj.hosts_with_traffic[i].traffic+"</th>";
-                traffic_tbody_html += "<th>"+res_obj.hosts_with_traffic[i].traffic_percent+" %</th> </tr>";
-                traffic_tbody.innerHTML += traffic_tbody_html;
-              }
-            }
-          });
-        }
-
-        function ajax_get(path,doFunction){
-          var protocol = window.location.protocol;
-          var hostname = window.location.hostname;
-          var port = window.location.port;
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              var response = JSON.parse(this.responseText); // retrieve response from server
-              doFunction(response);
-            }
+    function get_traffics(group_id) {
+      ajax_get("/networkshoptraffic/traffics/" + group_id, function (res_obj) {
+        var max_traffic_tr = document.getElementById("max_traffic_tr-" + group_id);
+        var avg_traffic_tr = document.getElementById("avg_traffic_tr-" + group_id);
+        var min_traffic_tr = document.getElementById("min_traffic_tr-" + group_id);
+        max_traffic_tr.className = (res_obj.max_traffic_percent >= <%= traffics_danger_percent %>) ?
+          "table-white-danger" : (res_obj.max_traffic_percent >= <%= traffics_warning_percent %>) ?
+          "table-white-warning" : "table-white";
+        avg_traffic_tr.className = (res_obj.avg_traffic_percent >= <%= traffics_danger_percent %>) ?
+          "table-white-danger" : (res_obj.avg_traffic_percent >= <%= traffics_warning_percent %>) ?
+          "table-white-warning" : "table-white";
+        min_traffic_tr.className = (res_obj.min_traffic_percent >= <%= traffics_danger_percent %>) ?
+          "table-white-danger" : (res_obj.min_traffic_percent >= <%= traffics_warning_percent %>) ?
+          "table-white-warning" : "table-white";
+        document.getElementById("max_traffic-" + group_id).innerHTML = res_obj.max_traffic;
+        document.getElementById("max_traffic_percent-" + group_id).innerHTML = res_obj.max_traffic_percent + " %";
+        document.getElementById("avg_traffic-" + group_id).innerHTML = res_obj.avg_traffic;
+        document.getElementById("avg_traffic_percent-" + group_id).innerHTML = res_obj.avg_traffic_percent + " %";
+        document.getElementById("min_traffic-" + group_id).innerHTML = res_obj.min_traffic;
+        document.getElementById("min_traffic_percent-" + group_id).innerHTML = res_obj.min_traffic_percent + " %";
+        var traffic_tbody = document.getElementById("traffic_tbody-" + group_id);
+        traffic_tbody.innerHTML = ""
+        if (res_obj.hosts_with_traffic != undefined) {
+          for (var i = 0; i < res_obj.hosts_with_traffic.length; i++) {
+            let traffic_tbody_html = ""
+            traffic_tbody_html += '<tr class="';
+            traffic_tbody_html += (Number(res_obj.hosts_with_traffic[i].traffic_percent) >=
+              <%= traffics_danger_percent %>) ? "table-white-danger" : (Number(res_obj.hosts_with_traffic[i].traffic_percent) >=
+              <%= traffics_warning_percent %>) ? "table-white-warning" : "table-white";
+            traffic_tbody_html += '">';
+            traffic_tbody_html += "<th scope='row'>" + res_obj.hosts_with_traffic[i].name + "</th>";
+            traffic_tbody_html += "<th>" + res_obj.hosts_with_traffic[i].traffic + "</th>";
+            traffic_tbody_html += "<th>" + res_obj.hosts_with_traffic[i].traffic_percent + " %</th> </tr>";
+            traffic_tbody.innerHTML += traffic_tbody_html;
           }
-          xmlhttp.open("GET", protocol+"//"+hostname+":"+port+""+path, true);
-          xmlhttp.send();
         }
+      });
+    }
 
-        </script>
-      </body>
-      </html>
+    function ajax_get(path, doFunction) {
+      var protocol = window.location.protocol;
+      var hostname = window.location.hostname;
+      var port = window.location.port;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText); // retrieve response from server
+          doFunction(response);
+        }
+      }
+      xmlhttp.open("GET", protocol + "//" + hostname + ":" + port + "" + path, true);
+      xmlhttp.send();
+    }
+    function slideCarousels(ids, action) {
+      var len = ids.length;
+      var id = null;
+      for (var i = 0; i < len; i++) {
+        id = ids[i];
+        $('#' + id).carousel({ slide: action });
+      }
+    }
+    $('.carousel').on('mouseover', function(ev) {
+      ev.preventDefault();
+      $('.carousel').carousel('pause');
+    });
+    $('.carousel').on('mouseleave', function(ev) {
+      ev.preventDefault();
+      $('.carousel').carousel('cycle');
+    });
+  </script>
+</body>
+
+</html>

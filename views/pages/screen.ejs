@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <% path = "../"; %>
-  <% include ../partials/head %>
+    <% include ../partials/head %>
 </head>
+
 <body class="bg-gray">
   <header>
     <% include ../partials/header %>
@@ -14,11 +16,15 @@
         <div class="row">
           <div class="col">
             <% var data= {'btn_group_label':btn_group_label,'btn_group_list':btn_group_list};%>
-            <% include ../partials/btn-group %>
+              <% include ../partials/btn-group %>
           </div>
         </div><br>
         <div class="col">
-          <div class="col"><div class="row"><h1><b><%= screen_title %></b></h1></div></div><br>
+          <div class="col">
+            <div class="row">
+              <h1><b><%= screen_title %></b></h1>
+            </div>
+          </div><br>
           <div class="row justify-content-around">
             <div class="col">
               <div class="iframe-responsive">
@@ -35,7 +41,7 @@
   </footer>
 
   <script>
-
   </script>
 </body>
+
 </html>
